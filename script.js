@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
-
+    
     var prices = {"hotdog": 4.50, "fries": 3.00, "soda": 1.50, "sauerkraut": 1};
 
-    document.querySelector('input[type=submit]').addEventListener('click', function () {
+    document.querySelector('input[type=submit]').addEventListener('click', function (e) {
         let numHotDogs = document.querySelector('input[name=hotdog]').value;
         let numFries = document.querySelector('input[name=fries]').value;
         let numSodas = document.querySelector('input[name=soda]').value;
@@ -10,9 +10,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
         var q = getQuantity(numHotDogs, numFries, numSodas, numSks);
         gatherTotals(q);
-        totalItems(prices);
+        document.querySelector('#order-total').innerHTML = "Your order total is: $" + totalItems(prices);
+        e.preventDefault();
+       
     });
-
+    
     // Add quanities to array
     function getQuantity(hd, fr, s, sk) {
         let quantities = [];
@@ -37,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
             total += obj[value];
         }
         console.log(total);
+        return total;
     }
 
 
