@@ -1,16 +1,23 @@
 document.addEventListener('DOMContentLoaded', function () {
     'use strict';
-    var prices = {"hotdog": 4.50, "fries": 3.00, "soda": 1.50, "sauerkraut": 1};
+
+   var prices = [];
+   prices["hotdog"] = 4.5,
+   prices["fries"] = 3.5,
+   prices["soda"] = 1.5;
+   prices["sauerkraut"] = 1;
+   console.log(prices);
 
     document.querySelector('input[type=submit]').addEventListener('click', function (e) {
         let numHotDogs = document.querySelector('input[name=hotdog]').value;
         let numFries = document.querySelector('input[name=fries]').value;
         let numSodas = document.querySelector('input[name=soda]').value;
         let numSks = document.querySelector('input[name=skraut]').value;
+        var quantities = getQuantity(numHotDogs, numFries, numSodas, numSks);
+        // Add order quantities to array
+        gatherTotals(quantities);
 
-        var q = getQuantity(numHotDogs, numFries, numSodas, numSks);
-        gatherTotals(q);
-        document.querySelector('#order-total').innerHTML = "Your order total is: $" + totalItems(prices);
+        document.querySelector('#order-total').innerHTML = "Your order total is: $" + totalItems(prices).toFixed(2);
         e.preventDefault();
     });
 
@@ -32,10 +39,10 @@ document.addEventListener('DOMContentLoaded', function () {
         return prices;
     }
 
-    function totalItems(obj) {
+    function totalItems(arr) {
         var total = 0;
-        for (let value in obj) {
-            total += obj[value];
+        for (let value in arr) {
+            total += arr[value];
         }
         console.log(total);
         return total;
