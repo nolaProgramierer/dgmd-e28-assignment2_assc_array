@@ -2,14 +2,16 @@ document.addEventListener('DOMContentLoaded', function () {
     'use strict';
 
     document.querySelector('input[type=submit]').addEventListener('click', function (e) {
+        // Retrieve input values
         let numHotDogs = document.querySelector('input[name=hotdog]').value;
         let numFries = document.querySelector('input[name=fries]').value;
         let numSodas = document.querySelector('input[name=soda]').value;
         let numSks = document.querySelector('input[name=skraut]').value;
-        
+        // Associative array of quantities
         var quantities = getQuantity(numHotDogs, numFries, numSodas, numSks);
-        // Add order quantities to array
+        // Add order quantities to array and calculate new array key values
         var numOfItems = gatherTotals(quantities);
+        // Add totals of individuals items for grand total
         var total = totalItems(numOfItems);
 
         document.querySelector('#order-total').innerHTML = "Your order total is: $" + total.toFixed(2);
