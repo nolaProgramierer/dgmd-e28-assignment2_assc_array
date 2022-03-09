@@ -17,10 +17,13 @@ h1 {
     display: grid;
     grid-template-rows: repeat(4, 40px);
     grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    font-size: 1.5em;
 }
 form {
     grid-row: 2 / 3;
     grid-column: 3 / 5;
+    font-size: 1.5em;
 }
 #order-total {
     grid-row: 3 / 4;
